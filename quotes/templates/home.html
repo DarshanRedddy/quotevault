@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>All Quotes</h2>
+{% for tag in tags %}
+  <a href="{% url 'quotes_by_tag' tag.id %}" class="badge bg-secondary">{{ tag.name }}</a>
+{% endfor %}
+<hr>
+{% for quote in quotes %}
+  <blockquote class="blockquote">{{ quote.text }}</blockquote>
+  <footer class="blockquote-footer">{{ quote.author }} — <span class="badge bg-info">{{ quote.tag.name }}</span></footer>
+{% endfor %}
+{% endblock %}

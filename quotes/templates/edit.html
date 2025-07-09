@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Quote</h2>
+<form method="POST">
+  {% csrf_token %}
+  <textarea name="text" class="form-control mb-2">{{ quote.text }}</textarea>
+  <input name="author" class="form-control mb-2" value="{{ quote.author }}">
+  <select name="tag" class="form-control mb-2">
+    {% for tag in tags %}
+      <option value="{{ tag.id }}" {% if quote.tag.id == tag.id %}selected{% endif %}>{{ tag.name }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit" class="btn btn-success">Update Quote</button>
+</form>
+{% endblock %}
